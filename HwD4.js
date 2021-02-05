@@ -116,7 +116,7 @@ console.log(deleteOne("Hello strive, Testing", true));
    Ex.: onlyLetters("I love 123 whatever")  => returns "I love whatever"
 */
 
-const onlyLetters = str => str.replace(/\d+/g,'')
+const onlyLetters = str => str.replace(/\d+/g,'').replace(/\s+/g, ' ').trim()
   
   console.log(onlyLetters("I love 123 whatever"));
 
