@@ -402,15 +402,48 @@ console.log(sumYears());
     Write the function searchMovie that receives a string and returns all the movies with that string in the title.
 */
 
-
+const searchMovie = str => {
+  const searchMovieA = [];
+  for (let i = 0; i < movies.length; i++) {
+      if (movies[i].Title.toLowerCase().includes(str.toLowerCase())) {
+          searchMovieA.push(movies[i].Title)
+      }
+  }
+  return searchMovieA;
+}
+console.log("Searched movie: ", searchMovie("Flies"));
 
 /* Ex.19
     Write the function searchAndDivide that receives a string and returns an object with an array "match" with all the movies that contains the given string in the title, and another array "nonMatch" with all the other movies.
 */
 
+const searchAndDivide = str => {
+  const movieObject = {
+      match: [],
+      nonMatch: []
+  }
+  for (let i = 0; i < movies.length; i++) {
+      if (movies[i].Title.toLowerCase().includes(str.toLowerCase())) {
+          movieObject.match.push(movies[i].Title)
+      } else {
+          movieObject.nonMatch.push(movies[i].Title)
+      }
+  }
+  return movieObject;
+}
+
+console.log(searchAndDivide("Lord of the rings"));
+
 /* Ex.20
    Write the function deleteX that receives a number and returns an array without the element in the given position.
 */
+
+const randomNumbers = [1, 2, 3, 4, 5, 6];
+const deleteX = x => {
+    randomNumbers.splice(x, 1);
+    return randomNumbers;
+}
+console.log(deleteX(1));
 
 // [EXTRAS] JS Advanced
 
