@@ -137,7 +137,7 @@ console.log(isThisAnEmail("mike@gmail.com"));
 */
 
 const whatDayIsIt = () => {
-  let today= new Date()
+  const today= new Date()
   const daysOfWeek = ['Sunday', 'Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   return daysOfWeek[today.getDay()]
 }
@@ -171,7 +171,7 @@ console.log(dices(5));
 */
 
 const d = new Date();
-const howManyDays = function (day, month, year) {
+const howManyDays = (day, month, year) => {
     const inputDate = new Date(year, month - 1, day + 1);
     const today = d.getTime();
     return (Math.floor((today - inputDate) / (1000 * 3600 * 24)));
@@ -182,14 +182,15 @@ console.log(howManyDays(01, 2, 2021));
    Write the function isTodayMyBDay that returns true if it's your birthday, false otherwise.
 */
 
-const isTodayMyBDay = function () {
-  const bday = new Date(1988, 11, 20);
+const isTodayMyBDay = () => {
+  const bday = new Date(1988, 02, 07);
   const todayDate = new Date().getTime();
-  const todayinFormat = new Date(todayDate)
-  if (bday.getMonth() === todayinFormat.getMonth() && bday.getDate() === todayinFormat.getDate()) {
+  const todayInFormat = new Date(todayDate);
+  if (bday.getMonth() === todayInFormat.getMonth() && bday.getDate() === todayInFormat.getDate()) {
       return true;
   } else return false;
 }
+
 console.log(isTodayMyBDay());
 
 // JS Arrays // Objs
@@ -313,36 +314,95 @@ const movies = [
    Write the function deleteProp that receives an object and a string, and returns the object after deleting the property with that given name.
 */
 
+const deleteProp = (obj, str) => delete obj[str];
+
+console.log(movies[0]);
 
 /* Ex.12 
     Write the function olderMovie that finds the older movie in the array.
 */
 
+const olderMovie = (a, b) => {
+  if (parseInt(a.Year) < parseInt(b.Year)) {
+    return a.Title;
+  } else if (parseInt(b.Year) < parseInt(a.Year)) {
+    return b.Title;
+  }
+}
+
+console.log(olderMovie(movies[1], movies[0]));
+
 /* Ex.13
     Write the function countMovies that returns the number of movies into the array.
 */
 
+const countMovies = () => movies.length; // at first i thought i need to write something more complex.
 
+console.log("Number of movies:", countMovies());
 
 /* Ex.14
     Write the function onlyTitles that creates an array with only the titles of the movies.
 */
 
+const onlyTitles = () => {
+  const arrayTitles = [];
+  for (let i = 0; i < movies.length; i++) {
+    arrayTitles.push(movies[i].Title);
+    }
+    return arrayTitles;
+}
+
+console.log(onlyTitles());
+
 /* Ex.15
    Write the function onlyThisMillennium that returns only the movies produced in this millennium.
 */
+
+const onlyThisMillennium = () => {
+  const thisMillennium = [];
+  for (let i = 0; i < movies.length; i++) {
+    if (movies[i].Year >= 2000) {
+      thisMillennium.push(movies[i].Title)
+    }
+  }
+  return thisMillennium;
+}
+
+console.log(onlyThisMillennium());
 
 /* Ex.16 
     Write the function getMovieById that receives an id and returns the movie with the given id.
 */
 
+const getMovieById = id => {
+  for (let i = 0; i < movies.length; i++) {
+          if (movies[i].imdbID === id) {
+    return movies[i].Title
+  }
+}
+}
+
+console.log(getMovieById("tt2395427"));
+
 /* Ex.17
     Write the function sumYears that returns the sum of the years the movie has been produced.
 */
 
+const sumYears = () => {
+  let sum = 0;
+  for (let i = 0; i < movies.length; i++) {
+    sum += parseInt(movies[i].Year)    
+  }
+  return sum;
+}
+
+console.log(sumYears());
+
 /* Ex.18
     Write the function searchMovie that receives a string and returns all the movies with that string in the title.
 */
+
+
 
 /* Ex.19
     Write the function searchAndDivide that receives a string and returns an object with an array "match" with all the movies that contains the given string in the title, and another array "nonMatch" with all the other movies.
